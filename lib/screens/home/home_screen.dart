@@ -1,3 +1,5 @@
+import 'package:cinema7/screens/home/EventosComponents.dart';
+import 'package:cinema7/screens/home/TextComponent.dart';
 import 'package:cinema7/screens/home/buildDot.dart';
 import 'package:cinema7/screens/home/buscar.dart';
 import 'package:cinema7/screens/home/header.dart';
@@ -78,30 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Peliculas',
-                            style: TextStyle(
-                              color: kTitleTextColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Ver todo',
-                            style: TextStyle(
-                              color: kButtonColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    TextComponent(texto: 'Peliculas'),
                     const SizedBox(height: 20),
                     Container(
                       height: 250,
@@ -134,30 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Eventos',
-                            style: TextStyle(
-                              color: kTitleTextColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Ver todo',
-                            style: TextStyle(
-                              color: kButtonColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    TextComponent(texto: 'Eventos'),
+                    const SizedBox(height: 20),
+                    EventosComponents(events: events)
                   ],
                 ),
               )

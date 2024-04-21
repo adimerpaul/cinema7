@@ -87,7 +87,10 @@ class _MovieCardState extends State<MovieCard> {
                               ),
                             ),
                             Text(
-                              widget.movie['cantidad'].toString() + ' entradas',
+                              (
+                              int.parse(widget.movie['capacidad_sala'].toString()) -
+                              int.parse(widget.movie['cantidad_usada'].toString())
+                              ).toString() + ' disponibles',
                               style: TextStyle(
                                 color: kTitleTextColor,
                                 fontSize: 12,
