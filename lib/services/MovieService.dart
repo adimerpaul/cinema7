@@ -25,4 +25,13 @@ class MovieService {
       return [];
     }
   }
+  Future proximos() async {
+    var url = apiURL() + 'proximos';
+    var response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return [];
+    }
+  }
 }

@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List movies = [];
   List moviesAll = [];
   List events = [];
+  List proximos = [];
   //search textcontroller
   final TextEditingController searchController = TextEditingController();
 
@@ -34,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     moviesGet();
   }
@@ -47,6 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
     response = await MovieService().events();
     setState(() {
       events = response;
+    });
+    response = await MovieService().proximos();
+    setState(() {
+      proximos = response;
     });
     // movies.forEach((element) {
     //   print(globals.API_BACK + '../../../imagen/' + element['imagen']);
@@ -115,7 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 20),
                     TextComponent(texto: 'Eventos'),
                     const SizedBox(height: 20),
-                    EventosComponents(events: events)
+                    EventosComponents(events: events),
+                    const SizedBox(height: 20),
+                    TextComponent(texto: 'Proximamente'),
+                    const SizedBox(height: 20),
+                    EventosComponents(events: proximos),
                   ],
                 ),
               )

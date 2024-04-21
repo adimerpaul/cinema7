@@ -19,7 +19,7 @@ class EventosComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 180,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: events.length,
@@ -29,9 +29,9 @@ class EventosComponents extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 20),
                 height: 200,
-                width: 140,
+                width: 130,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(
                     image: NetworkImage(globals.API_BACK + '../../../imagen/' + events[index]['imagen']),
                     fit: BoxFit.cover,
@@ -45,7 +45,7 @@ class EventosComponents extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(5),
                     gradient: LinearGradient(
                       colors: [
                         Colors.black87,
