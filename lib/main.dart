@@ -1,4 +1,4 @@
-import 'package:cinema7/screens/home_screen.dart';
+import 'package:cinema7/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
