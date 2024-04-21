@@ -1,4 +1,5 @@
 import 'package:cinema7/screens/home/buildDot.dart';
+import 'package:cinema7/screens/home/buscar.dart';
 import 'package:cinema7/screens/home/header.dart';
 import 'package:cinema7/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentPage = 0;
   //array movies
   List movies = [];
+  List moviesAll = [];
+  List events = [];
+  //search textcontroller
+  final TextEditingController searchController = TextEditingController();
+
+
   PageController pageController = PageController(initialPage: 0, viewportFraction: 0.8);
 
 
@@ -31,9 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   moviesGet() async {
     var response = await MovieService().movies();
-    print(response);
     setState(() {
       movies = response;
+      moviesAll = response;
+    });
+    response = await MovieService().events();
+    setState(() {
+      events = response;
     });
     // movies.forEach((element) {
     //   print(globals.API_BACK + '../../../imagen/' + element['imagen']);
@@ -54,24 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     header(),
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: kSearchbarColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextField(
-                          style: TextStyle(color: kTitleTextColor),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Buscar',
-                            hintStyle: TextStyle(color: kTitleTextColor),
-                            prefixIcon: Icon(Icons.search, color: kTitleTextColor)
-                          ),
-                        ),
-                      ),
+                    Buscar(
+                      searchController: searchController,
+                      onChanged: (text) { // Cambiado a (text)
+                        setState(() {
+                          if (text.isNotEmpty) {
+                            movies = moviesAll.where((movie) => movie['nombre'].toLowerCase().contains(text.toLowerCase())).toList();
+                          } else {
+                            movies = moviesAll;
+                          }
+                        });
+                      },
                     ),
                     const SizedBox(height: 20),
                     Padding(
@@ -121,13 +125,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     Align(
                       alignment: Alignment.center,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(movies.length, (index) => BuildDot(
-                          currentPage: currentPage,
-                          index: index,
-                        )
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(movies.length, (index) => BuildDot(
+                            currentPage: currentPage,
+                            index: index,
+                          )
+                        ),
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Eventos',
+                            style: TextStyle(
+                              color: kTitleTextColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Ver todo',
+                            style: TextStyle(
+                              color: kButtonColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

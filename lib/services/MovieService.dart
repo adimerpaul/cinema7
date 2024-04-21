@@ -16,4 +16,13 @@ class MovieService {
       return [];
     }
   }
+  Future events() async {
+    var url = apiURL() + 'eventos';
+    var response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return [];
+    }
+  }
 }
