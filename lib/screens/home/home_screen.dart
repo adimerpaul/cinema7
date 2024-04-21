@@ -1,3 +1,4 @@
+import 'package:cinema7/screens/home/buildDot.dart';
 import 'package:cinema7/screens/home/header.dart';
 import 'package:cinema7/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -116,7 +117,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                       ),
-                    )
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(movies.length, (index) => BuildDot(
+                          currentPage: currentPage,
+                          index: index,
+                        )
+                      ),
+                    ),
+                    ),
                   ],
                 ),
               )
