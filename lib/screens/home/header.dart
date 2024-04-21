@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/colors.dart';
+
 class header extends StatelessWidget {
   const header({super.key});
 
@@ -13,7 +15,7 @@ class header extends StatelessWidget {
           const Text(
             'Multicines PLAZA ',
             style: TextStyle(
-              color: Colors.white,
+              color: kTitleTextColor,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
