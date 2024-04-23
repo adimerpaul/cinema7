@@ -4,9 +4,11 @@ import 'package:cinema7/screens/home/buildDot.dart';
 import 'package:cinema7/screens/home/buscar.dart';
 import 'package:cinema7/screens/home/header.dart';
 import 'package:cinema7/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 import '../../services/MovieService.dart';
 import '../../../globals.dart' as globals;
@@ -129,7 +131,60 @@ class _HomeScreenState extends State<HomeScreen> {
               )
           )
         ],
-      )
+      ),
+      // floatingActionButton: Container(
+      //   height: 60.0,
+      //   width: 60.0,
+      //   child: FittedBox(
+      //     child: FloatingActionButton(
+      //       backgroundColor: kPrimaryColor,
+      //       onPressed: () {},
+      //       child: Icon(
+      //         // Icono de pelicula
+      //         Icons.movie_filter_sharp,
+      //         color: Colors.white,
+      //       ),
+      //       shape: const RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.all(Radius.circular(30.0)),
+      //       ),
+      //       // elevation: 5.0,
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: ConvexAppBar(
+        style: TabStyle.reactCircle,
+        backgroundColor: kPrimaryColor,
+        color: kTitleTextColor,
+        // curve: Curves.easeInOut,
+        // curveSize: 0,
+        height: 60,
+        items: [
+          TabItem(title: 'Inicio', icon: Icons.home_outlined, activeIcon: Icons.home),
+          TabItem(title: 'Peliculas', icon: Icons.movie_creation_outlined, activeIcon: Icons.movie_creation),
+          TabItem(title: 'Eventos', icon: Icons.event_outlined, activeIcon: Icons.event),
+          TabItem(title: 'Proximos', icon: Icons.calendar_today_outlined, activeIcon: Icons.calendar_today),
+        ],
+        initialActiveIndex: 0,
+        onTap: (int i) => print('click index=$i'),
+      ),
     );
   }
+  // Widget _buildNavItem(IconData icon, String label) {
+  //   return Column(
+  //     // mainAxisSize: MainAxisSize.min,
+  //     children: [
+  //       IconButton(
+  //         icon: Icon(icon),
+  //         color: kTitleTextColor,
+  //         onPressed: () {},
+  //         padding: EdgeInsets.zero,
+  //       ),
+  //       Text(
+  //         label,
+  //         style: TextStyle(color: kTitleTextColor),
+  //       ),
+  //     ],
+  //   );
+  // }
 }
